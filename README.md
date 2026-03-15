@@ -1,4 +1,3 @@
-# xrp-ledger-api
 XRP Ledger API — Build on the XRPL DEX in Minutes
 
   The XRP Ledger has a native DEX, a built-in AMM, protocol-level NFTs, and 3-5 second finality. The https://xrpl.to/docs gives you access
@@ -16,23 +15,18 @@ XRP Ledger API — Build on the XRPL DEX in Minutes
 
   What You Can Build
 
-  ┌───────────────────────┬─────────────────────────────────────────┬──────────────┐
-  │        Project        │             Endpoints Used              │  Difficulty  │
-  ├───────────────────────┼─────────────────────────────────────────┼──────────────┤
-  │ Token price tracker   │ /v1/tokens, /v1/token/{id}              │ Beginner     │
-  ├───────────────────────┼─────────────────────────────────────────┼──────────────┤
-  │ Portfolio dashboard   │ /v1/account/{address}/balances          │ Beginner     │
-  ├───────────────────────┼─────────────────────────────────────────┼──────────────┤
-  │ DEX trading interface │ /v1/orderbook, /v1/amm/pools            │ Intermediate │
-  ├───────────────────────┼─────────────────────────────────────────┼──────────────┤
-  │ Price alert bot       │ WebSocket tokens channel                │ Intermediate │
-  ├───────────────────────┼─────────────────────────────────────────┼──────────────┤
-  │ NFT analytics tool    │ /v1/nft/collections, /v1/nft/floors     │ Intermediate │
-  ├───────────────────────┼─────────────────────────────────────────┼──────────────┤
-  │ Arbitrage scanner     │ /v1/orderbook, /v1/amm/pools, WebSocket │ Advanced     │
-  ├───────────────────────┼─────────────────────────────────────────┼──────────────┤
-  │ Trading bot           │ /v1/orderbook, /v1/submit, WebSocket    │ Advanced     │
-  └───────────────────────┴─────────────────────────────────────────┴──────────────┘
+  Beginner
+  - Token price tracker using /v1/tokens and /v1/token/{id}
+  - Portfolio dashboard using /v1/account/{address}/balances
+
+  Intermediate
+  - DEX trading interface using /v1/orderbook and /v1/amm/pools
+  - Price alert bot using WebSocket tokens channel
+  - NFT analytics tool using /v1/nft/collections and /v1/nft/floors
+
+  Advanced
+  - Arbitrage scanner using /v1/orderbook, /v1/amm/pools, and WebSocket
+  - Trading bot using /v1/orderbook, /v1/submit, and WebSocket
 
   API Overview
 
@@ -129,47 +123,35 @@ XRP Ledger API — Build on the XRPL DEX in Minutes
   console.log('Risk score:', review.score, '/100');
   console.log('Flags:', review.flags);
 
-  Endpoint Categories
+  232 Endpoints Across 7 Categories
 
-  ┌───────────┬──────────────────────────────────────────────────┬──────────────────────────────┐
-  │ Category  │                  What It Covers                  │      Example Endpoints       │
-  ├───────────┼──────────────────────────────────────────────────┼──────────────────────────────┤
-  │ Tokens    │ Prices, OHLC, holders, RSI, sparklines, trending │ /v1/tokens, /v1/token/{id}   │
-  ├───────────┼──────────────────────────────────────────────────┼──────────────────────────────┤
-  │ Trading   │ Orderbooks, AMM pools, quotes, trade history     │ /v1/orderbook, /v1/amm/pools │
-  ├───────────┼──────────────────────────────────────────────────┼──────────────────────────────┤
-  │ Accounts  │ Balances, trustlines, tx history, holdings       │ /v1/account/{addr}/balances  │
-  ├───────────┼──────────────────────────────────────────────────┼──────────────────────────────┤
-  │ NFTs      │ Collections, floors, traits, sales, rankings     │ /v1/nft/collections          │
-  ├───────────┼──────────────────────────────────────────────────┼──────────────────────────────┤
-  │ Risk      │ Scam detection, token scores, creator tracking   │ /v1/token/{id}/review        │
-  ├───────────┼──────────────────────────────────────────────────┼──────────────────────────────┤
-  │ WebSocket │ Live prices, trades, orderbook, ledger events    │ wss://api.xrpl.to/ws         │
-  ├───────────┼──────────────────────────────────────────────────┼──────────────────────────────┤
-  │ Utilities │ Health checks, faucet, embeddable charts         │ /v1/health                   │
-  └───────────┴──────────────────────────────────────────────────┴──────────────────────────────┘
+  Tokens — Prices, OHLC, holders, RSI, sparklines, trending, new listings
 
-  Total: 232 endpoints
+  Trading — Orderbooks, AMM pools, swap quotes, trade history, volume analytics
+
+  Accounts — Balances, trustlines, transaction history, token holdings
+
+  NFTs — Collections, floor prices, traits, sales history, trader rankings
+
+  Risk — Scam detection, token review scores, creator activity tracking
+
+  WebSocket — Live prices, trades, orderbook depth, ledger events, news feeds
+
+  Utilities — Health checks, faucet access, embeddable charts
 
   Rate Limits & Pricing
 
-  ┌──────────────┬───────┬───────────────┬──────────────┬────────┐
-  │     Tier     │ Price │ Credits/Month │ Requests/Sec │ Tx/Sec │
-  ├──────────────┼───────┼───────────────┼──────────────┼────────┤
-  │ Anonymous    │ Free  │ Unlimited     │ 100          │ 1      │
-  ├──────────────┼───────┼───────────────┼──────────────┼────────┤
-  │ Free         │ $0    │ 1M            │ 10           │ 1      │
-  ├──────────────┼───────┼───────────────┼──────────────┼────────┤
-  │ Developer    │ $49   │ 10M           │ 50           │ 5      │
-  ├──────────────┼───────┼───────────────┼──────────────┼────────┤
-  │ Business     │ $499  │ 100M          │ 200          │ 50     │
-  ├──────────────┼───────┼───────────────┼──────────────┼────────┤
-  │ Professional │ $999  │ 200M          │ 500          │ 100    │
-  └──────────────┴───────┴───────────────┴──────────────┴────────┘
+  Anonymous — Free, no sign-up, no API key, 100 req/sec, unlimited credits
 
-  Anonymous access requires no API key and no sign-up. Just make requests.
+  Free — $0/month, 1M credits, 10 req/sec
 
-  Authenticated tiers use an X-Api-Key header. Payments accepted in XRP or via Stripe.
+  Developer — $49/month, 10M credits, 50 req/sec
+
+  Business — $499/month, 100M credits, 200 req/sec
+
+  Professional — $999/month, 200M credits, 500 req/sec
+
+  Payments accepted in XRP or via Stripe. Each endpoint costs 1-20 credits per call.
 
   Why xrpl.to Instead of Raw Ledger APIs
 
@@ -178,19 +160,17 @@ XRP Ledger API — Build on the XRPL DEX in Minutes
 
   xrpl.to handles all the indexing, aggregation, and calculation:
 
-  - Token prices — calculated from live DEX activity, converted to USD
-  - OHLC candles — aggregated from trade history at multiple timeframes
-  - Volume and market cap — computed continuously across all trading pairs
-  - Holder analytics — trustline crawling and distribution analysis
-  - NFT floor prices — tracked across all marketplace activity
-  - Risk scores — pattern detection and creator analysis
-  - WebSocket streams — clean typed events instead of raw transaction metadata
+  - Token prices calculated from live DEX activity, converted to USD
+  - OHLC candles aggregated from trade history at multiple timeframes
+  - Volume and market cap computed continuously across all trading pairs
+  - Holder analytics from trustline crawling and distribution analysis
+  - NFT floor prices tracked across all marketplace activity
+  - Risk scores from pattern detection and creator analysis
+  - WebSocket streams as clean typed events instead of raw transaction metadata
 
   The platform has served over 61 million API requests across 162 countries.
 
   Why the XRP Ledger
-
-  If you're evaluating which chain to build on:
 
   - Native DEX — order book built into the protocol, not a smart contract
   - Native AMM — protocol routes trades to whichever gives better price
@@ -204,5 +184,5 @@ XRP Ledger API — Build on the XRPL DEX in Minutes
 
   Resources
 
-  - API Documentation: https://xrpl.to/docs
-  - Live DEX Data: https://xrpl.to
+  - https://xrpl.to/docs
+  - https://xrpl.to
